@@ -14,6 +14,6 @@ node{
         sh 'docker push badr2214/newdockerb' }
         //push the image from VM to docker hub
         stage('Run Container on Dev Server'){
-        sh 'docker run -p 8888:5000 -d --name my-app-python9 badr2214/newdockerb' }
+        sh 'docker run -p 8889:5000 -d --name my-app-python9 badr2214/newdockerb' }
             //run container web app
         }

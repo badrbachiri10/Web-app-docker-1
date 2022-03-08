@@ -1,0 +1,19 @@
+node{
+    stage('checkout Scm'){
+        git credentialsId: 'e8dc5674-707c-49df-b08a-fc3787b23496', url: 'https://github.com/badrbachiri10/Web-app-docker-1' } //integrate github with jenkins
+         stage('build docker image'){
+            sh 'docker build -t badr2214/newdockerb .'
+            
+        } //build of docker image using a Dockerfile in root of the repo git
+        stage('push docker image')
+        { withCredentials([string(credentialsId: '5e519281-6505-465d-9af2-d22e0be9a93a', variable: 'dockerhubpsswd')]) {
+           
+        sh "docker login -u badr2214 -p ${dockerhubpsswd}"
+           
+        } //login to the docker hub
+        sh 'docker push badr2214/newdockerb' }
+        //push the image from VM to docker hub
+        stage('Run Container on Dev Server'){
+        sh 'docker run -p 8888:5000 -d --name my-app-python7 badr2214/newdockerb' }
+            //run container web app
+        }

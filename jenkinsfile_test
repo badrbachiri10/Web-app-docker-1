@@ -1,5 +1,5 @@
 node{
-    stage('checkout Scm2'){
+    stage('checkout Scm'){
         git credentialsId: 'e8dc5674-707c-49df-b08a-fc3787b23496', url: 'https://github.com/badrbachiri10/Web-app-docker-1' } //integrate github with jenkins
          stage('build docker image'){
             sh 'docker build -t badr2214/newdockerb .'
